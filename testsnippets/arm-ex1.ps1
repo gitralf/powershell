@@ -1,4 +1,8 @@
-﻿$RGName="dvrg04"
+﻿#remove before publishing
+$password="P@ssw0rd!"
+
+
+$RGName="dvrg04"
 $location="North Europe"
 
 $vhdStorageName=$RGName+"stor01"
@@ -22,7 +26,7 @@ $vhdStorageContainerName="vhds"
 
 
 $adminname=   "superuser"
-$adminpwd=    convertto-securestring "P@ssw0rd!" -AsPlainText -force
+$adminpwd=    convertto-securestring $password -AsPlainText -force
 $admincred= new-object System.Management.Automation.PSCredential($adminname,$adminpwd)
 
 
