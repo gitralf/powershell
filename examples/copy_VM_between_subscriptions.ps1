@@ -21,19 +21,20 @@ $sourceDataDisks = $sourceVm.VM.DataVirtualHardDisks
 
 $sourceStoragename = ($sourceOSDisk.MediaLink.Host -split "\.")[0]
 $sourceStorageAccount = Get-AzureStorageAccount –StorageAccountName $sourceStorageName
-$sourceStorageKey = (Get-AzureStorageKey -StorageAccountName            $sourceStorageName).Primary
-$sourceContext = New-AzureStorageContext –StorageAccountName            $sourceStorageName -StorageAccountKey $sourceStorageKey 
+$sourceStorageKey = (Get-AzureStorageKey -StorageAccountName $sourceStorageName).Primary
+$sourceContext = New-AzureStorageContext –StorageAccountName $sourceStorageName -StorageAccountKey $sourceStorageKey 
 
 #stop source VM
 Stop-AzureVM –Name $sourceName –ServiceName $sourceService 
 
 #switch to target subscription
 Select-AzureSubscription -SubscriptionName $destSubscription
+Set-AzureSubscription -SubscriptionName $destSubscription -CurrentStorageAccountName $destStorageName
 
 #collect information
-$destStorageAccount = Get-AzureStorageAccount -StorageAccountName           $destStorageName
-$deststoragekey= (Get-AzureStorageKey -StorageAccountName           $destStorageName).Primary
-$destContext   = New-AzureStorageContext –StorageAccountName           $destStorageName   -StorageAccountKey $destStorageKey
+$destStorageAccount = Get-AzureStorageAccount -StorageAccountName $destStorageName
+$deststoragekey= (Get-AzureStorageKey -StorageAccountName $destStorageName).Primary
+$destContext   = New-AzureStorageContext –StorageAccountName $destStorageName -StorageAccountKey $destStorageKey
 
 #loop through all disks
 $allDisks = @($sourceOSDisk) + $sourceDataDisks
@@ -45,7 +46,7 @@ foreach($disk in $allDisks)
     $sourceBlobName = $disk.MediaLink.Segments[2]
     $destBlobName = $sourceBlobName
 
-    $destBlob = Start-CopyAzureStorageBlob  –SrcContainer $sourceContName   -SrcBlob $sourceBlobName  -DestContainer vhds   -DestBlob $destBlobName  -Context $sourceContext -DestContext $destContext              -Force
+    $destBlob = Start-CopyAzureStorageBlob –SrcContainer $sourceContName -SrcBlob $sourceBlobName -DestContainer vhds -DestBlob $destBlobName -Context $sourceContext -DestContext $destContext -Force
 
     Write-Host "Copying blob $sourceBlobName"
 
