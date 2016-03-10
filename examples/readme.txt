@@ -1,5 +1,5 @@
 AzureGermany
-Umgebung (Environment) für die Microsoft Cloud Duetschland während der Preview
+Umgebung (Environment) fÃ¼r die Microsoft Cloud Duetschland wÃ¤hrend der Preview
 
 copy_VM_between_subscriptions
 Ist das Beispiel zu meinem Blogeintrag im Technet. Kopiert VMs zwischen verschiedenen Subscriptions
@@ -7,3 +7,5 @@ Ist das Beispiel zu meinem Blogeintrag im Technet. Kopiert VMs zwischen verschie
 blobdir
 Beispiel zum Blogartikel in TechNet. Macht das Arbeiten mit Blobs einfacher... mir zumindest :-)
 
+uploadcert
+Neues Management-Zertifikat hochladen
