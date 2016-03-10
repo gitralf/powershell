@@ -1,7 +1,7 @@
 # Pre:
 # username and password ready
 
-$cred=Get-Credentials
+$cred=Get-Credential
 
 # already created a new certificate and placed it in certificate store (normally "My")
 # so give the name of this new certificate
@@ -41,5 +41,5 @@ $xml.SubscriptionCertificate.SubscriptionCertificatePublicKey = $publicKey
 $xml.SubscriptionCertificate.SubscriptionCertificateThumbprint = $thumbprint
 $xml.SubscriptionCertificate.SubscriptionCertificateData = $certificateData
 
-Invoke-WebRequest -uri https://management.core.cloudapi.de/$subID/certificates -Method Post -Headers @{"x-ms-version"="2012-03-01"} -Credentials $cred -Body $xml.outerxml -ContentType "application/xml"
+Invoke-WebRequest -uri https://management.core.cloudapi.de/$subID/certificates -Method Post -Headers @{"x-ms-version"="2012-03-01"} -Credential $cred -Body $xml.outerxml -ContentType "application/xml"
 
