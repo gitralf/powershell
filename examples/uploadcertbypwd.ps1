@@ -41,5 +41,5 @@ $xml.SubscriptionCertificate.SubscriptionCertificatePublicKey = $publicKey
 $xml.SubscriptionCertificate.SubscriptionCertificateThumbprint = $thumbprint
 $xml.SubscriptionCertificate.SubscriptionCertificateData = $certificateData
 
-Invoke-WebRequest -uri https://management.core.cloudapi.de/$subID/certificates -Method Post -Headers @{"x-ms-version"="2012-03-01"} -Credentials $cred $authcert -Body $xml.outerxml -ContentType "application/xml"
+Invoke-WebRequest -uri https://management.core.cloudapi.de/$subID/certificates -Method Post -Headers @{"x-ms-version"="2012-03-01"} -Credentials $cred -Body $xml.outerxml -ContentType "application/xml"
 
