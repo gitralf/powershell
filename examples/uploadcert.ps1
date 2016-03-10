@@ -13,7 +13,7 @@ $authcert=Get-PfxCertificate -FilePath $path_to_valid_cert
 $name_of_new_cert="AzureMgmt"
 
 # be sure that your current subscription is active, otherwise we will use the wrong ID
-$subID = (get-azuresubscription |Where-Object {$_.iscurrent}).subscriptionID 
+$subID = (get-azuresubscription -Current).subscriptionID 
 
 
 $xmlframe=@'
