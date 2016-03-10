@@ -1,9 +1,20 @@
+# Pre:
+# already installed a certificate (the one that came from MS)
+# so give here the path to this certificate (needed for authentication):
+
 $path_to_valid_cert="c:\temp\sub-cert.pfx"
+
+#when running, you are asked for the PFX-Password
+$authcert=Get-PfxCertificate -FilePath $path_to_valid_cert
+
+# already created a new certificate and placed it in certificate store (normally "My")
+# so give the name of this new certificate
+
 $name_of_new_cert="AzureMgmt"
 
-
+# be sure that your current subscription is active, otherwise we will use the wrong ID
 $subID = (get-azuresubscription |Where-Object {$_.iscurrent}).subscriptionID 
-$authcert=Get-PfxCertificate -FilePath $path_to_valid_cert
+
 
 $xmlframe=@'
 <?xml version="1.0" ?>
