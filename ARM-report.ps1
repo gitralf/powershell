@@ -7,6 +7,7 @@ if ($outfile.Length -eq 0){
     $outfile=$env:TEMP + "\report"+$now+".csv"
 }
 
+
 "output as csv to {0}" -f $outfile
 
 $resources=@()
