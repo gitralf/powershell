@@ -1,3 +1,5 @@
+This is old stuff and probably not really needed any more (but kept for historical reasons)
+
 AzureGermany
 Umgebung (Environment) für die Microsoft Cloud Duetschland während der Preview
 
